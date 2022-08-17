@@ -1,0 +1,76 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <!--<RuntimeIdentifier>cosmos</RuntimeIdentifier>-->
+        <Platform>cosmos</Platform>
+        <SupportsX86Intrinsics>false</SupportsX86Intrinsics>
+        <SelfContained>True</SelfContained>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <EnableGDB>False</EnableGDB>
+        <StartCosmosGDB>True</StartCosmosGDB>
+        <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
+        <CosmosDebugPort>Serial: COM1</CosmosDebugPort>
+        <Launch>VMware</Launch>
+        <Profile>VMware</Profile>
+        <Description>Use VMware Player or Workstation to deploy and debug.</Description>
+        <PxeInterface>192.168.0.8</PxeInterface>
+        <DebugEnabled>False</DebugEnabled>
+        <VMWareEdition>Workstation</VMWareEdition>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\about.bmp" />
+      <None Remove="Resources\checkbox.bmp" />
+      <None Remove="Resources\checkedcheckbox.bmp" />
+      <None Remove="Resources\consolemode.bmp" />
+      <None Remove="Resources\error.bmp" />
+      <None Remove="Resources\file.bmp" />
+      <None Remove="Resources\folder.bmp" />
+      <None Remove="Resources\font.psf" />
+      <None Remove="Resources\pointer.bmp" />
+      <None Remove="Resources\restart.bmp" />
+      <None Remove="Resources\shutdown.bmp" />
+      <None Remove="Resources\sipaakernellogo.bmp" />
+      <None Remove="Resources\sipaakernellogolight.bmp" />
+      <None Remove="Resources\sipad.bmp" />
+      <None Remove="Resources\ssd.bmp" />
+      <None Remove="Resources\throwex.bmp" />
+      <None Remove="Resources\uilib.bmp" />
+      <None Remove="Resources\Wallpaper.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Resources\about.bmp" />
+      <EmbeddedResource Include="Resources\checkbox.bmp" />
+      <EmbeddedResource Include="Resources\checkedcheckbox.bmp" />
+      <EmbeddedResource Include="Resources\consolemode.bmp" />
+      <EmbeddedResource Include="Resources\error.bmp" />
+      <EmbeddedResource Include="Resources\file.bmp" />
+      <EmbeddedResource Include="Resources\folder.bmp" />
+      <EmbeddedResource Include="Resources\font.psf" />
+      <EmbeddedResource Include="Resources\pointer.bmp" />
+      <EmbeddedResource Include="Resources\restart.bmp" />
+      <EmbeddedResource Include="Resources\shutdown.bmp" />
+      <EmbeddedResource Include="Resources\sipaakernellogo.bmp" />
+      <EmbeddedResource Include="Resources\sipaakernellogolight.bmp" />
+      <EmbeddedResource Include="Resources\sipad.bmp" />
+      <EmbeddedResource Include="Resources\ssd.bmp" />
+      <EmbeddedResource Include="Resources\throwex.bmp" />
+      <EmbeddedResource Include="Resources\uilib.bmp" />
+      <EmbeddedResource Include="Resources\Wallpaper.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
+        <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
+        <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ConsolePrograms\" />
+    </ItemGroup>
+
+</Project>
