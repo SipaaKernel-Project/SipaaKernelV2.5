@@ -1,6 +1,6 @@
-# SipaaKernelV2
+# SipaaKernelV2.5
 
-The 2nd version of SipaaKernel
+
 
 Current features :
 
