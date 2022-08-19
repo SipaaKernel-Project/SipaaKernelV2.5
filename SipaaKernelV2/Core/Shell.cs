@@ -29,6 +29,7 @@ namespace SipaaKernelV2.Core
             cmds.Add(new CatCommand());
             cmds.Add(new ChangeDirCommand());
             cmds.Add(new SysThemeCommand());
+            cmds.Add(new DisableGUICommand());
         }
 
         internal static Command GetCommand(string command)

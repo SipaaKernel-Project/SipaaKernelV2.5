@@ -39,6 +39,8 @@ namespace SipaaKernelV2.Core
         public static byte[] Shutdown;
         [ManifestResourceStream(ResourceName = "SipaaKernelV2.Resources.restart.bmp")]
         public static byte[] Reboot;
+        [ManifestResourceStream(ResourceName = "SipaaKernelV2.Resources.settings.bmp")]
+        public static byte[] Settings;
         [ManifestResourceStream(ResourceName = "SipaaKernelV2.Resources.throwex.bmp")]
         public static byte[] ThrowException;
         [ManifestResourceStream(ResourceName = "SipaaKernelV2.Resources.consolemode.bmp")]

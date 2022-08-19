@@ -18,11 +18,11 @@ namespace SipaaKernelV2.Applications
             ApplicationDeveloper = "RaphMar2019";
             ApplicationVersion = 1.0;
             AppIcon = Bitmaps.sipad;
-            tbDoc = new TextBox(0, 32);
+            tbDoc = new TextBox(4, TitleBarHeight + 4);
             tbDoc.Focus = false;
             tbDoc.Multiline = true;
-            tbDoc.Width = Kernel.ScreenWidth;
-            tbDoc.Height = Kernel.ScreenHeight - 32 + 48;
+            tbDoc.Width = Kernel.ScreenWidth - (4 * 2);
+            tbDoc.Height = Kernel.ScreenHeight - (4 * 2);
         }
 
         public override void Update()

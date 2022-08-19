@@ -1,10 +1,10 @@
 ﻿using Sys = Cosmos.System;
+using System;
 using Cosmos.System.Graphics;
 using Cosmos.System.Graphics.Fonts;
 using Cosmos.HAL;
 using Cosmos.Core.Memory;
 using SipaaKernelV2.UI;
-using System;
 using Cosmos.System.FileSystem;
 using Cosmos.System.FileSystem.VFS;
 using SipaaKernelV2.Applications;
@@ -35,6 +35,7 @@ namespace SipaaKernelV2
         public static LanguageBase language = new EnglishLang();
         public static bool booting;
         public static int bootprogress;
+        internal static bool DisableGUI;
 
         protected override void OnBoot()
         {
@@ -42,7 +43,7 @@ namespace SipaaKernelV2
             {
                 base.OnBoot();
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 CrashScreen.DisplayKernelErrorAndReboot(ex.Message);
             }

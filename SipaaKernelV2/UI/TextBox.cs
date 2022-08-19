@@ -2,6 +2,7 @@
 using Cosmos.System.Graphics;
 using Cosmos.System.Graphics.Fonts;
 using SipaaKernelV2.Core.Keyboard;
+using SipaaKernelV2.UI.Extensions;
 using SipaaKernelV2.UI.SysTheme;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,9 @@ namespace SipaaKernelV2.UI
         private bool cursor;
         private bool passwordFilter;
         private int textW;
+        private uint borderradius = 11;
 
+        public uint BorderRadius { get { return borderradius; } set { borderradius = value; } }
         public string Text { get { return text; } }
         public bool Focus { get { return focus; } set { focus = value; } }
         public uint Width { get { return width; } set { width = value; } }
@@ -43,7 +46,10 @@ namespace SipaaKernelV2.UI
 
         public override void Draw(Canvas c)
         {
-            c.DrawFilledRectangle(new Pen(theme.BackColor), (int)X, (int)Y, (int)width, (int)height);
+            if (borderradius >= 1)
+                c.DrawRoundRect(new Pen(theme.BackColor), (int)X, (int)Y, (int)width, (int)height, (int)borderradius);
+            else
+                c.DrawFilledRectangle(new Pen(theme.BackColor), (int)X, (int)Y, (int)width, (int)height);
 
             if (theme.BorderSize > 1)
             {
@@ -57,7 +63,7 @@ namespace SipaaKernelV2.UI
                 }
                 else if (!passwordFilter) 
                 {
-                    c.DrawString(text,Kernel.font, new Pen(theme.ForeColor), (int)X + 4, (int)Y + ((int)height / 2) - 4); 
+                    c.DrawString(text,Kernel.font, new Pen(theme.ForeColor), (int)X + 4, (int)Y + (int)height / 2 - (int)Kernel.font.Height / 2); 
                 }
                 else if (passwordFilter && multiline)
                 {
@@ -73,7 +79,7 @@ namespace SipaaKernelV2.UI
                     int sx = (int)X + 4;
                     for (int i = 0; i < text.Length; i++)
                     {
-                        c.DrawChar('*', Kernel.font, new Pen(theme.ForeColor), sx, (int)Y + 4);
+                        c.DrawChar('*', Kernel.font, new Pen(theme.ForeColor), sx, (int)Y + (int)height / 2 - (int)Kernel.font.Height / 2);
                         sx += Kernel.font.Width;
                     }
                 }
