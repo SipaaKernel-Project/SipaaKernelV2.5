@@ -17,6 +17,11 @@ namespace SipaaKernelV2.Core.Commands
         }
         public override CommandResult Execute(List<string> args)
         {
+            if (Kernel.DisableGUI == true)
+            {
+                Console.WriteLine("Cannot start GUI mode : GUI is disabled!");
+                return CommandResult.Error;
+            }
             Kernel.GoToGUIMode();
             return CommandResult.ExitGetInput;
         }

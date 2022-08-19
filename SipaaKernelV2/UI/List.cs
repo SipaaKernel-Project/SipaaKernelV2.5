@@ -1,4 +1,5 @@
 ﻿using Cosmos.System.Graphics;
+using SipaaKernelV2.UI.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,9 @@ namespace SipaaKernelV2.UI
         private bool visible = false;
         private List<Button> buttons = new List<Button>();
         private SysTheme.ThemeBase theme = SysTheme.ThemeManager.GetCurrentTheme();
+        private uint borderradius = 11;
+
+        public uint BorderRadius { get { return borderradius; } set { borderradius = value; } }
         public List<Button> Buttons { get { return buttons; } set { buttons = value; } }
         public uint Width { get { return width; } set { width = value; } }
         public uint Height { get { return height; } set { height = value; } }
@@ -34,7 +38,11 @@ namespace SipaaKernelV2.UI
 
         public override void Draw(Canvas c)
         {
-            c.DrawFilledRectangle(new Pen(theme.BackColor), (int)X, (int)Y, (int)Width, (int)Height); // Draw panel rectangle
+            if (borderradius >= 1)
+                c.DrawRoundRect(new Pen(theme.BackColor), (int)X, (int)Y, (int)width, (int)height, (int)borderradius);
+            else
+                c.DrawFilledRectangle(new Pen(theme.BackColor), (int)X, (int)Y, (int)width, (int)height);
+
             if (theme.BorderSize > 1)
                 c.DrawRectangle(new Pen(theme.BorderColor, theme.BorderSize), (int)X, (int)Y, (int)width, (int)height);
 

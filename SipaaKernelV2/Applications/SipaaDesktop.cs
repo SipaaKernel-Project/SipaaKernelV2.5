@@ -2,6 +2,7 @@
 using Cosmos.System.Graphics;
 using SipaaKernelV2.Core;
 using SipaaKernelV2.UI;
+using SipaaKernelV2.UI.Extensions;
 using SipaaKernelV2.UI.SysTheme;
 using System;
 using System.Collections.Generic;
@@ -13,22 +14,23 @@ namespace SipaaKernelV2.Applications
 {
     internal class SipaaDesktop : Application
     {
-        Button openOSVersion, openUILibrary, openSipad, openFileExplorer, shutdown, consolemode, reboot, exButton;
+        Button openOSVersion, openUILibrary, openSipad, openFileExplorer,openSettings, shutdown, consolemode, reboot, exButton;
 
         public SipaaDesktop()
         {
             ApplicationName = "SipaaDesktop";
             ApplicationDeveloper = "RaphMar2019";
             ApplicationVersion = 1.0;
-            shutdown = new Button("", Kernel.ScreenWidth - 120, Kernel.ScreenHeight - 40, 40, 40);
-            reboot = new Button("", Kernel.ScreenWidth - 160, Kernel.ScreenHeight - 40, 40, 40);
-            consolemode = new Button("", Kernel.ScreenWidth - 200, Kernel.ScreenHeight - 40, 40, 40);
-            exButton = new Button("", Kernel.ScreenWidth - 240, Kernel.ScreenHeight - 40, 40, 40);
+            shutdown = new Button("", Kernel.ScreenWidth - 160, Kernel.ScreenHeight - 48, 40, 40);
+            reboot = new Button("", Kernel.ScreenWidth - 200, Kernel.ScreenHeight - 48, 40, 40);
+            consolemode = new Button("", Kernel.ScreenWidth - 240, Kernel.ScreenHeight - 48, 40, 40);
+            exButton = new Button("", Kernel.ScreenWidth - 280, Kernel.ScreenHeight - 48, 40, 40);
 
-            openOSVersion = new Button("", 80, Kernel.ScreenHeight - 40, 40, 40);
-            openUILibrary = new Button("", 120, Kernel.ScreenHeight - 40, 40, 40);
-            openSipad = new Button("", 160, Kernel.ScreenHeight - 40, 40, 40);
-            openFileExplorer = new Button("", 200, Kernel.ScreenHeight - 40, 40, 40);
+            openOSVersion = new Button("", 120, Kernel.ScreenHeight - 48, 40, 40);
+            openUILibrary = new Button("", 160, Kernel.ScreenHeight - 48, 40, 40);
+            openSipad = new Button("", 200, Kernel.ScreenHeight - 48, 40, 40);
+            openFileExplorer = new Button("", 240, Kernel.ScreenHeight - 48, 40, 40);
+            openSettings = new Button("", 280, Kernel.ScreenHeight - 48, 40, 40);
 
             shutdown.Bitmap = Bitmaps.shutdown;
             reboot.Bitmap = Bitmaps.reboot;
@@ -39,6 +41,7 @@ namespace SipaaKernelV2.Applications
             openUILibrary.Bitmap = Bitmaps.uilib;
             openSipad.Bitmap = Bitmaps.sipad;
             openFileExplorer.Bitmap = Bitmaps.folder;
+            openSettings.Bitmap = Bitmaps.settings;
         }
         public override void Draw(Canvas c)
         {
@@ -48,7 +51,7 @@ namespace SipaaKernelV2.Applications
             int timeWidth = (RTC.Year + "/" + RTC.Month + "/" + RTC.DayOfTheMonth + " " + RTC.Hour + ":" + RTC.Minute).Length * Kernel.font.Width;
             c.DrawString(RTC.Year + "/" + RTC.Month + "/" + RTC.DayOfTheMonth + " " + RTC.Hour + ":" + RTC.Minute, Kernel.font, new Pen(ThemeManager.GetCurrentTheme().ForeColor), (int)Kernel.ScreenWidth / 2 - timeWidth / 2, 4);
             // draw dock
-            c.DrawFilledRectangle(new Pen(ThemeManager.GetCurrentTheme().BackColor), 80, (int)Kernel.ScreenHeight - 40, (int)Kernel.ScreenWidth - (80 * 2), 40);
+            c.DrawRoundRect(new Pen(ThemeManager.GetCurrentTheme().BackColor), 120, (int)Kernel.ScreenHeight - 48, (int)Kernel.ScreenWidth - (120 * 2), 40, 11);
             //desktopTextView.Draw(c);
             openOSVersion.Draw(c);
             shutdown.Draw(c);
@@ -57,6 +60,7 @@ namespace SipaaKernelV2.Applications
             openUILibrary.Draw(c);
             openSipad.Draw(c);
             openFileExplorer.Draw(c);
+            openSettings.Draw(c);
             //window.Draw(c);
             exButton.Draw(c);
         }
@@ -69,6 +73,7 @@ namespace SipaaKernelV2.Applications
             consolemode.Update();
             openSipad.Update();
             openFileExplorer.Update();
+            openSettings.Update();
             //window.Update();
             exButton.Update();
             if (openOSVersion.ButtonState == ButtonState.Clicked)
@@ -94,6 +99,10 @@ namespace SipaaKernelV2.Applications
             if (openFileExplorer.ButtonState == ButtonState.Clicked)
             {
                 Kernel.OpenApplication(new FileExplorer());
+            }
+            if (openSettings.ButtonState == ButtonState.Clicked)
+            {
+                Kernel.OpenApplication(new SettingsApp());
             }
             if (consolemode.ButtonState == ButtonState.Clicked)
             {

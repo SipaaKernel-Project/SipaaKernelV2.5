@@ -26,6 +26,7 @@ namespace SipaaKernelV2.Applications
             AppIcon = Bitmaps.uilib;
             sampleButton = new Button("Sample Button", 8, 52, 200, 40);
             sampleButton.Bitmap = Bitmaps.cursor;
+            sampleButton.BorderRadius = 11;
             sampleTextView = new TextView("Click on Sample Button to toggle sample panel visibility.", 8, 38);
             sampleTextBox = new TextBox(8, 138);
             sampleCheckBox = new CheckBox("Do you like SipaaKernel?", 8, 100);

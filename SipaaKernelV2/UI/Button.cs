@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SipaaKernelV2.UI.SysTheme;
+using SipaaKernelV2.UI.Extensions;
 
 namespace SipaaKernelV2.UI
 {
@@ -14,7 +15,7 @@ namespace SipaaKernelV2.UI
     {
         // Fields, properties and constructors
         private string text = "Button";
-        private uint width = 150, height = 40;
+        private uint width = 150, height = 40, borderradius = 11;
         private ButtonState state;
         private ThemeBase theme = ThemeManager.GetCurrentTheme();
         private Bitmap bmp;
@@ -22,6 +23,7 @@ namespace SipaaKernelV2.UI
         public string Text { get { return text; } set { text = value; } }
         public uint Width { get { return width; } set { width = value; } }
         public uint Height { get { return height; } set { height = value; } }
+        public uint BorderRadius { get { return borderradius; } set { borderradius = value; } }
         public ButtonState ButtonState { get { return state; } }
         public ThemeBase Theme { get { return theme; } set { theme = value; } }
         public Bitmap Bitmap { get { return bmp; } set { bmp = value; } }
@@ -43,18 +45,37 @@ namespace SipaaKernelV2.UI
 
         public override void Draw(Canvas c)
         {
-            // Draw button rectangle 
-            switch (this.state)
+            if (borderradius >= 1)
             {
-                case ButtonState.Idle:
-                    c.DrawFilledRectangle(new Pen(theme.BackColor), (int)X, (int)Y, (int)width, (int)height);
-                    break;
-                case ButtonState.Hover:
-                    c.DrawFilledRectangle(new Pen(theme.HoveredBackColor), (int)X, (int)Y, (int)width, (int)height);
-                    break;
-                case ButtonState.Clicked:
-                    c.DrawFilledRectangle(new Pen(theme.ClickedBackColor), (int)X, (int)Y, (int)width, (int)height);
-                    break;
+                // Draw button rectangle 
+                switch (this.state)
+                {
+                    case ButtonState.Idle:
+                        c.DrawRoundRect(new Pen(theme.BackColor), (int)X, (int)Y, (int)width, (int)height, (int)borderradius);
+                        break;
+                    case ButtonState.Hover:
+                        c.DrawRoundRect(new Pen(theme.HoveredBackColor), (int)X, (int)Y, (int)width, (int)height, (int)borderradius);
+                        break;
+                    case ButtonState.Clicked:
+                        c.DrawRoundRect(new Pen(theme.ClickedBackColor), (int)X, (int)Y, (int)width, (int)height, (int)borderradius);
+                        break;
+                }
+            }
+            else
+            {
+                // Draw button rectangle 
+                switch (this.state)
+                {
+                    case ButtonState.Idle:
+                        c.DrawFilledRectangle(new Pen(theme.BackColor), (int)X, (int)Y, (int)width, (int)height);
+                        break;
+                    case ButtonState.Hover:
+                        c.DrawFilledRectangle(new Pen(theme.HoveredBackColor), (int)X, (int)Y, (int)width, (int)height);
+                        break;
+                    case ButtonState.Clicked:
+                        c.DrawFilledRectangle(new Pen(theme.ClickedBackColor), (int)X, (int)Y, (int)width, (int)height);
+                        break;
+                }
             }
             if (theme.BorderSize > 1)
             {

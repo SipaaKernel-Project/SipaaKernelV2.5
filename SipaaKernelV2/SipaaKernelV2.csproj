@@ -32,6 +32,7 @@
       <None Remove="Resources\font.psf" />
       <None Remove="Resources\pointer.bmp" />
       <None Remove="Resources\restart.bmp" />
+      <None Remove="Resources\settings.bmp" />
       <None Remove="Resources\shutdown.bmp" />
       <None Remove="Resources\sipaakernellogo.bmp" />
       <None Remove="Resources\sipaakernellogolight.bmp" />
@@ -53,6 +54,7 @@
       <EmbeddedResource Include="Resources\font.psf" />
       <EmbeddedResource Include="Resources\pointer.bmp" />
       <EmbeddedResource Include="Resources\restart.bmp" />
+      <EmbeddedResource Include="Resources\settings.bmp" />
       <EmbeddedResource Include="Resources\shutdown.bmp" />
       <EmbeddedResource Include="Resources\sipaakernellogo.bmp" />
       <EmbeddedResource Include="Resources\sipaakernellogolight.bmp" />

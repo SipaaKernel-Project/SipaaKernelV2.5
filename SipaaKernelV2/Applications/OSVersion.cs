@@ -34,7 +34,8 @@ namespace SipaaKernelV2.Applications
             c.DrawString("Made with <3 by RaphMar2019", Kernel.font, new Pen(ThemeManager.GetCurrentTheme().ForeColor), 10, 40 + (int)Bitmaps.logo.Height + 45);
             c.DrawString("Special thanks to the Cosmos team (Without Cosmos, this OS isn't possible!)", Kernel.font, new Pen(ThemeManager.GetCurrentTheme().ForeColor), 10, 40 + (int)Bitmaps.logo.Height + 60);
             c.DrawString("Thanks to xyve#5469 for the text editor idea,", Kernel.font, new Pen(ThemeManager.GetCurrentTheme().ForeColor), 10, 40 + (int)Bitmaps.logo.Height + 60 + Kernel.font.Height + 6);
-            c.DrawString("Kokolor#5434 for File Explorer, Boot Screen!", Kernel.font, new Pen(ThemeManager.GetCurrentTheme().ForeColor), 10, 40 + (int)Bitmaps.logo.Height + 60 + Kernel.font.Height * 2 + 6);
+            c.DrawString("Kokolor#5434 for File Explorer, Boot Screen,", Kernel.font, new Pen(ThemeManager.GetCurrentTheme().ForeColor), 10, 40 + (int)Bitmaps.logo.Height + 60 + Kernel.font.Height * 2 + 6);
+            c.DrawString("atmo#2158 for RoundRect project, used in SipaaKernel V2!", Kernel.font, new Pen(ThemeManager.GetCurrentTheme().ForeColor), 10, 40 + (int)Bitmaps.logo.Height + 60 + Kernel.font.Height * 3 + 6);
         }
     }
 }

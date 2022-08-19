@@ -10,7 +10,7 @@ using SipaaKernelV2.UI.SysTheme;
 
 namespace SipaaKernelV2.Core
 {
-    internal class Application
+    public class Application
     {
         public string ApplicationName, ApplicationDeveloper;
         public Bitmap AppIcon;
@@ -20,6 +20,7 @@ namespace SipaaKernelV2.Core
         public Application()
         {
             closeButton = new Button("X", Kernel.ScreenWidth - 24, 0, 24, 32);
+            closeButton.BorderRadius = 0;
         }
         public virtual void Update()
         {
