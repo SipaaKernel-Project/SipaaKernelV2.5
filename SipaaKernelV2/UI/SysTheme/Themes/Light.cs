@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace SipaaKernelV2.UI.SysTheme.Themes
 {
-    internal class Light : ThemeBase
+    public class Light : ThemeBase
     {
         public Light()
         {

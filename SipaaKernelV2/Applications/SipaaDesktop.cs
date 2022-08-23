@@ -9,10 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static SipaaKernelV2.Kernel;
 
 namespace SipaaKernelV2.Applications
 {
-    internal class SipaaDesktop : Application
+    public class SipaaDesktop : Application
     {
         Button openOSVersion, openUILibrary, openSipad, openFileExplorer,openSettings, shutdown, consolemode, reboot, exButton;
 
@@ -45,10 +46,12 @@ namespace SipaaKernelV2.Applications
         }
         public override void Draw(Canvas c)
         {
-            c.DrawImage(Bitmaps.wallpaper, 0, 0);
-            c.DrawFilledRectangle(new Pen(ThemeManager.GetCurrentTheme().BackColor), 0, 0, (int)Kernel.ScreenWidth, 24);
-            c.DrawString("SipaaKernel V2.5 - Desktop", Kernel.font, new Pen(ThemeManager.GetCurrentTheme().ForeColor), 4, 4);
             int timeWidth = (RTC.Year + "/" + RTC.Month + "/" + RTC.DayOfTheMonth + " " + RTC.Hour + ":" + RTC.Minute).Length * Kernel.font.Width;
+            c.DrawImage(Bitmaps.wallpaper, 0, 0);
+            //c.DrawFilledRectangle(new Pen(ThemeManager.GetCurrentTheme().BackColor), 0, 0, (int)Kernel.ScreenWidth, 24);
+            c.DrawRoundRect(new Pen(ThemeManager.GetCurrentTheme().BackColor), 4, 4, 225, 16, 4);
+            c.DrawRoundRect(new Pen(ThemeManager.GetCurrentTheme().BackColor), (int)Kernel.ScreenWidth / 2 - 250 / 2, 4, 250, 16, 4);
+            c.DrawString(Kernel.OSName + " - " + Kernel.language.desktop, Kernel.font, new Pen(ThemeManager.GetCurrentTheme().ForeColor), 4, 4);
             c.DrawString(RTC.Year + "/" + RTC.Month + "/" + RTC.DayOfTheMonth + " " + RTC.Hour + ":" + RTC.Minute, Kernel.font, new Pen(ThemeManager.GetCurrentTheme().ForeColor), (int)Kernel.ScreenWidth / 2 - timeWidth / 2, 4);
             // draw dock
             c.DrawRoundRect(new Pen(ThemeManager.GetCurrentTheme().BackColor), 120, (int)Kernel.ScreenHeight - 48, (int)Kernel.ScreenWidth - (120 * 2), 40, 11);
@@ -78,15 +81,15 @@ namespace SipaaKernelV2.Applications
             exButton.Update();
             if (openOSVersion.ButtonState == ButtonState.Clicked)
             {
-                Kernel.OpenApplication(new OSVersion());
+                SkOpenApp(new OSVersion());
             }
             if (openSipad.ButtonState == ButtonState.Clicked)
             {
-                Kernel.OpenApplication(new Sipad());
+                SkOpenApp(new Sipad());
             }
             if (openUILibrary.ButtonState == ButtonState.Clicked)
             {
-                Kernel.OpenApplication(new UIGallery());
+                SkOpenApp(new UIGallery());
             }
             if (shutdown.ButtonState == ButtonState.Clicked)
             {
@@ -98,22 +101,21 @@ namespace SipaaKernelV2.Applications
             }
             if (openFileExplorer.ButtonState == ButtonState.Clicked)
             {
-                Kernel.OpenApplication(new FileExplorer());
+                SkOpenApp(new FileExplorer());
             }
             if (openSettings.ButtonState == ButtonState.Clicked)
             {
-                Kernel.OpenApplication(new SettingsApp());
+                SkOpenApp(new SettingsApp());
             }
             if (consolemode.ButtonState == ButtonState.Clicked)
             {
-                Kernel.ConsoleMode();
+                SkRaiseHardError("User manually throwed this exception.");
                 Shell.GetInput();
                 return;
             }
             if (exButton.ButtonState == ButtonState.Clicked)
             {
                 throw new Exception("UserException");
-                return;
             }
         }
     }

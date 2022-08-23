@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SipaaKernelV2.Applications
 {
-    internal class Sipad : Application
+    public class Sipad : Application
     {
         TextBox tbDoc;
         public Sipad()

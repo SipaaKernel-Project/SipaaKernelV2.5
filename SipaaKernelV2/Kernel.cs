@@ -25,7 +25,7 @@ namespace SipaaKernelV2
             ScreenWidth = 1280,
             ScreenHeight = 720;
         public static bool GUIMode = false;
-        internal static Application CurrentApplication;
+        public static Application CurrentApplication;
         public static byte _deltaT;
         public static bool Pressed;
         public static object FreeCount;
@@ -35,7 +35,39 @@ namespace SipaaKernelV2
         public static LanguageBase language = new EnglishLang();
         public static bool booting;
         public static int bootprogress;
-        internal static bool DisableGUI;
+        public static bool DisableGUI;
+
+        // API functions //
+
+        public static void SkRaiseHardError(string message)
+        {
+            throw new Exception(message);
+        }
+
+        public static void SkOpenApp(Application app)
+        {
+            if (app == null) return;
+            CurrentApplication = app;
+        }
+
+        public static void SkLaunchConsole()
+        {
+            c.Disable();
+            GUIMode = false;
+            if (!Shell.LoadedCommands)
+                Shell.LoadCommands();
+        }
+
+        public static void SkLaunchGUI()
+        {
+            c = FullScreenCanvas.GetFullScreenCanvas(new Mode((int)ScreenWidth, (int)ScreenHeight, ColorDepth.ColorDepth32));
+            Sys.MouseManager.ScreenWidth = ScreenWidth;
+            Sys.MouseManager.ScreenHeight = ScreenHeight;
+
+            GUIMode = true;
+        }
+
+        // Kernel code //
 
         protected override void OnBoot()
         {
@@ -51,34 +83,12 @@ namespace SipaaKernelV2
 
         protected override void BeforeRun()
         {
-            OpenApplication(new BootApp());
-            GoToGUIMode();
+            SkLaunchGUI();
+            SkOpenApp(new BootApp());
             if (!FSDriver.Initialize())
                 Console.WriteLine("Cannot init filesystem!");
+            SystemConfig.LoadConfig();
             booting = true;
-        }
-
-        internal static void OpenApplication(Application app)
-        {
-            if (app == null) return;
-            CurrentApplication = app;
-        }
-
-        public static void ConsoleMode()
-        {
-            c.Disable();
-            GUIMode = false;
-            if (!Shell.LoadedCommands)
-                Shell.LoadCommands();
-        }
-
-        public static void GoToGUIMode()
-        {
-            c = FullScreenCanvas.GetFullScreenCanvas(new Mode((int)ScreenWidth, (int)ScreenHeight, ColorDepth.ColorDepth32));
-            Sys.MouseManager.ScreenWidth = ScreenWidth;
-            Sys.MouseManager.ScreenHeight = ScreenHeight;
-
-            GUIMode = true;
         }
 
         protected override void Run()
@@ -109,7 +119,7 @@ namespace SipaaKernelV2
                         if (bootprogress == 250)
                         {
                             booting = false;
-                            OpenApplication(new SipaaDesktop());
+                            SkOpenApp(new SipaaDesktop());
                         }
                     }
                     else
@@ -134,8 +144,8 @@ namespace SipaaKernelV2
             }
             catch (Exception ex)
             {
-                if (GUIMode) 
-                    OpenApplication(new CrashApp(ex));
+                if (GUIMode)
+                    SkOpenApp(new CrashApp(ex));
                 else
                     CrashScreen.DisplayAndReboot(ex.Message);
             }

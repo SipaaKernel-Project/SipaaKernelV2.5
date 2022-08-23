@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SipaaKernelV2.UI
 {
-    internal class CheckBox : Control
+    public class CheckBox : Control
     {
         private string text = "Check Box";
         private bool check;

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SipaaKernelV2.Applications
 {
-    internal class FileExplorer : Application
+    public class FileExplorer : Application
     {
         Button mainDrive;
         List fileDirList;

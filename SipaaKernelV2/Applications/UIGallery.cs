@@ -9,7 +9,7 @@ using SipaaKernelV2.UI;
 
 namespace SipaaKernelV2.Applications
 {
-    internal class UIGallery : Application
+    public class UIGallery : Application
     {
         Button sampleButton;
         TextBox sampleTextBox;
@@ -17,6 +17,7 @@ namespace SipaaKernelV2.Applications
         CheckBox sampleCheckBox;
         Panel samplePanel;
         List sampleList;
+        ProgressBar pbar;
 
         public UIGallery()
         {
@@ -27,16 +28,18 @@ namespace SipaaKernelV2.Applications
             sampleButton = new Button("Sample Button", 8, 52, 200, 40);
             sampleButton.Bitmap = Bitmaps.cursor;
             sampleButton.BorderRadius = 11;
-            sampleTextView = new TextView("Click on Sample Button to toggle sample panel visibility.", 8, 38);
+            sampleTextView = new TextView("Click on Sample Button", 8, 38);
             sampleTextBox = new TextBox(8, 138);
             sampleCheckBox = new CheckBox("Do you like SipaaKernel?", 8, 100);
             samplePanel = new Panel(8, sampleTextBox.Y + 6, 200, 200);
-            sampleList = new List(8, 200 + samplePanel.Height + 6);
+            sampleList = new List(8, sampleTextBox.Y + sampleTextBox.Height + 12);
             sampleList.AddButton(new Button("never", 0, 0));
             sampleList.AddButton(new Button("gonna", 0, 0));
             sampleList.AddButton(new Button("give", 0, 0));
             sampleList.AddButton(new Button("you", 0, 0));
             sampleList.AddButton(new Button("up", 0, 0));
+            pbar = new ProgressBar(8, sampleList.Y + sampleList.Height + 12, 150, 40);
+            pbar.Value = 10;
         }
 
         public override void Draw(Canvas c)
@@ -48,6 +51,7 @@ namespace SipaaKernelV2.Applications
             samplePanel.Draw(c);
             sampleTextBox.Draw(c);
             sampleList.Draw(c);
+            pbar.Draw(c);
         }
         public override void Update()
         {
@@ -58,10 +62,7 @@ namespace SipaaKernelV2.Applications
             sampleTextBox.Update();
             sampleTextView.Update();
             sampleList.Update();
-            if (sampleButton.ButtonState == ButtonState.Clicked)
-            {
-                samplePanel.Visible = !samplePanel.Visible;
-            }
+            pbar.Update();
         }
     }
 }

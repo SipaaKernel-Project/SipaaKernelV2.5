@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SipaaKernelV2", "SipaaKernelV2\SipaaKernelV2.csproj", "{244FD386-D18F-4648-9270-CF293E0B2C4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SipaaKernelV2.Core", "SipaaKernelV2.Core\SipaaKernelV2.Core.csproj", "{AF08FDE2-6CB2-464F-8685-0AC365A08877}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{244FD386-D18F-4648-9270-CF293E0B2C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{244FD386-D18F-4648-9270-CF293E0B2C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{244FD386-D18F-4648-9270-CF293E0B2C4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF08FDE2-6CB2-464F-8685-0AC365A08877}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF08FDE2-6CB2-464F-8685-0AC365A08877}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF08FDE2-6CB2-464F-8685-0AC365A08877}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF08FDE2-6CB2-464F-8685-0AC365A08877}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

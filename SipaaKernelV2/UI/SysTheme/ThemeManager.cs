@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SipaaKernelV2.UI.SysTheme
 {
-    internal class ThemeManager
+    public class ThemeManager
     {
         private static ThemeBase currentTheme = new Themes.Dark();
 

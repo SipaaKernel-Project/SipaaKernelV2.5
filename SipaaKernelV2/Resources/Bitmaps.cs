@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using SipaaKernelV2.Core;
 namespace SipaaKernelV2
 {
-    internal class Bitmaps
+    public class Bitmaps
     {
         public static Bitmap cursor = new Bitmap(Files.Cursor);
         public static Bitmap wallpaper = new Bitmap(Files.Wallpaper);

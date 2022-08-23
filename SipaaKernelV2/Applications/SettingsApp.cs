@@ -9,7 +9,7 @@ using SipaaKernelV2.UI.SysTheme;
 using Cosmos.System.Graphics;
 using Cosmos.System;
 using SipaaKernelV2.UI.SysTheme.Themes;
-
+using static SipaaKernelV2.Kernel;
 namespace SipaaKernelV2.Applications
 {
     public class SettingsApp : Application
@@ -47,8 +47,7 @@ namespace SipaaKernelV2.Applications
             Kernel.c.Mode = new Mode((int)width, (int)height, ColorDepth.ColorDepth32);
             MouseManager.ScreenWidth = width;
             MouseManager.ScreenHeight = height;
-            Bitmaps.wallpaperStretched = new Bitmap(width, height, Files.Wallpaper, ColorDepth.ColorDepth32);
-            Kernel.OpenApplication(new SipaaDesktop());
+            SkOpenApp(new SipaaDesktop());
         }
         public override void Update()
         {
@@ -61,12 +60,12 @@ namespace SipaaKernelV2.Applications
             if (btnLight.ButtonState == ButtonState.Clicked)
             {
                 ThemeManager.SetCurrentTheme(new Light());
-                Kernel.OpenApplication(new SipaaDesktop());
+                SkOpenApp(new SipaaDesktop());
             }
             if (btnDark.ButtonState == ButtonState.Clicked)
             {
                 ThemeManager.SetCurrentTheme(new Dark());
-                Kernel.OpenApplication(new SipaaDesktop());
+                SkOpenApp(new SipaaDesktop());
             }
             if (btn1024x768.ButtonState == ButtonState.Clicked)
             {

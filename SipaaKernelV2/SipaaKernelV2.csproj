@@ -75,4 +75,8 @@
       <Folder Include="ConsolePrograms\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\SipaaKernelV2.Core\SipaaKernelV2.Core.csproj" />
+    </ItemGroup>
+
 </Project>

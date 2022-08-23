@@ -9,7 +9,7 @@ using SipaaKernelV2.UI.SysTheme;
 
 namespace SipaaKernelV2.Applications
 {
-    internal class OSVersion : Application
+    public class OSVersion : Application
     {
         public OSVersion()
         {
